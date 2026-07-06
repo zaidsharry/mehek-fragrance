@@ -117,13 +117,13 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
             ))}
         </AnimatePresence>
 
-        {/* Orbiting note chips (signature interaction) */}
+        {/* Orbiting note bubbles (signature interaction) — large photoreal glass */}
         <div className="pointer-events-none absolute inset-0">
           {notes.map((n, i) => {
             const angle = (i / notes.length) * Math.PI * 2 - Math.PI / 2;
-            const radius = 44; // % of card
+            const radius = 42; // % of card
             const x = 50 + Math.cos(angle) * radius;
-            const y = 50 + Math.sin(angle) * radius * 0.75;
+            const y = 50 + Math.sin(angle) * radius * 0.78;
             return (
               <motion.div
                 key={n.name}
@@ -131,19 +131,44 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
                 animate={
                   active
                     ? { opacity: 1, scale: 1, x: `-50%`, y: `-50%`, filter: "blur(0px)" }
-                    : { opacity: 0, scale: 0.6, x: `-50%`, y: `-30%`, filter: "blur(10px)" }
+                    : { opacity: 0, scale: 0.4, x: `-50%`, y: `-30%`, filter: "blur(14px)" }
                 }
                 transition={{ duration: 0.9, delay: active ? 0.15 + i * 0.09 : i * 0.04, ease: [0.22, 1, 0.36, 1] }}
                 className="absolute"
                 style={{ left: `${x}%`, top: `${y}%` }}
               >
                 <motion.div
-                  animate={active ? { y: [0, -6, 0] } : { y: 0 }}
-                  transition={{ duration: 3.5 + i * 0.4, repeat: Infinity, ease: "easeInOut" }}
-                  className="glass-luxe flex items-center gap-2 rounded-full px-3 py-1.5 shadow-[0_10px_30px_-8px_oklch(0_0_0_/_0.7)]"
+                  animate={active ? { y: [0, -10, 0] } : { y: 0 }}
+                  transition={{ duration: 4 + i * 0.5, repeat: Infinity, ease: "easeInOut" }}
+                  className="flex flex-col items-center gap-2"
                 >
-                  <span className="text-sm leading-none">{n.icon}</span>
-                  <span className="whitespace-nowrap font-display text-[13px] leading-none text-gold-soft">{n.name}</span>
+                  <div
+                    className="relative h-24 w-24 overflow-hidden rounded-full border border-gold/40 shadow-[0_20px_50px_-10px_oklch(0_0_0_/_0.9),inset_0_2px_8px_oklch(1_0_0_/_0.1)] backdrop-blur-md md:h-28 md:w-28"
+                    style={{
+                      background: "radial-gradient(circle at 30% 30%, oklch(1 0 0 / 0.15), oklch(0 0 0 / 0.6))",
+                    }}
+                  >
+                    <img
+                      src={noteImage(n.name)}
+                      alt={n.name}
+                      loading="lazy"
+                      width={112}
+                      height={112}
+                      className="h-full w-full object-cover"
+                    />
+                    <div
+                      aria-hidden
+                      className="absolute inset-0 rounded-full"
+                      style={{
+                        background:
+                          "radial-gradient(circle at 30% 25%, oklch(1 0 0 / 0.35), transparent 45%)",
+                        mixBlendMode: "screen",
+                      }}
+                    />
+                  </div>
+                  <span className="whitespace-nowrap rounded-full bg-ink/80 px-3 py-1 font-display text-[13px] leading-none text-gold-soft backdrop-blur-sm">
+                    {n.name}
+                  </span>
                 </motion.div>
               </motion.div>
             );
