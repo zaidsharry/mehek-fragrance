@@ -5,6 +5,7 @@ import { Plus } from "lucide-react";
 import type { Product } from "@/lib/products";
 import { formatPrice } from "@/lib/products";
 import { useCart } from "@/lib/cart-store";
+import { noteImage } from "@/lib/note-images";
 
 /**
  * Signature interaction: on hover, the bottle lifts and tilts with the mouse,
