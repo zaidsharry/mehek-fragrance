@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import heroBottle from "@/assets/hero-bottle.jpg";
+import maisonBottle from "@/assets/maison-bottle.jpg";
 import heroVideoAsset from "@/assets/hero-video.mp4.asset.json";
 import { ProductCard } from "@/components/ProductCard";
 import { products } from "@/lib/products";
