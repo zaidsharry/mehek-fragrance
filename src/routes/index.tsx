@@ -138,20 +138,44 @@ function Home() {
 
 
       {/* MANIFESTO */}
-      <section className="relative py-32 md:py-48">
-        <div className="mx-auto grid max-w-[1200px] gap-16 px-6 md:grid-cols-12 md:px-10">
+      <section className="relative overflow-hidden py-32 md:py-48">
+        <div className="mx-auto grid max-w-[1200px] items-center gap-16 px-6 md:grid-cols-12 md:px-10">
+          {/* Left — bottle image with floating smoke */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-            className="md:col-span-5"
+            transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+            className="relative md:col-span-5"
           >
-            <div className="label-eyebrow">The Maison</div>
-            <h2 className="mt-6 font-display text-4xl leading-tight md:text-5xl">
-              Perfume, but rendered <span className="italic text-gold-gradient">cinematic</span>.
-            </h2>
+            {/* Floating smoke behind bottle */}
+            <div className="pointer-events-none absolute -inset-10 -z-10">
+              <div className="smoke-layer absolute inset-0 opacity-70" />
+              <motion.div
+                aria-hidden
+                className="absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2 rounded-full"
+                style={{
+                  background:
+                    "radial-gradient(closest-side, rgba(191,149,63,0.18), transparent 70%)",
+                  filter: "blur(40px)",
+                }}
+                animate={{ scale: [1, 1.08, 1], opacity: [0.6, 0.9, 0.6] }}
+                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+              />
+            </div>
+            <motion.img
+              src={maisonBottle}
+              alt="Mehek signature extrait — faceted crystal bottle with gold cap"
+              loading="lazy"
+              width={1024}
+              height={1280}
+              className="relative mx-auto w-full max-w-[440px] rounded-sm object-cover shadow-[0_40px_120px_-30px_rgba(191,149,63,0.4)]"
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+            />
           </motion.div>
+
+          {/* Right — eyebrow + headline above paragraph */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -159,7 +183,11 @@ function Home() {
             transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="md:col-span-6 md:col-start-7"
           >
-            <p className="font-display text-xl leading-relaxed text-foreground/85 md:text-2xl">
+            <div className="label-eyebrow">The Maison</div>
+            <h2 className="mt-6 font-display text-4xl leading-tight md:text-5xl">
+              Perfume, but rendered <span className="italic text-gold-gradient">cinematic</span>.
+            </h2>
+            <p className="mt-10 font-display text-xl leading-relaxed text-foreground/85 md:text-2xl">
               We compose fragrance the way a director frames light — with intention,
               with restraint, and with a taste for the shadowed side of the room.
             </p>
@@ -172,6 +200,7 @@ function Home() {
           </motion.div>
         </div>
       </section>
+
 
       {/* INGREDIENTS SCROLL STORY */}
       <section className="relative overflow-hidden border-y border-gold/10 py-32">
