@@ -107,7 +107,7 @@ function ProductPage() {
                   <div key={tier.label} className="glass-luxe flex flex-wrap items-center gap-3 p-4">
                     <div className="w-14 text-[10px] uppercase tracking-[0.3em] text-gold">{tier.label}</div>
                     <div className="flex flex-wrap gap-2">
-                      {tier.items.map((n) => (
+                      {tier.items.map((n: string) => (
                         <span key={n} className="border border-gold/20 px-2.5 py-1 text-xs text-foreground/80">
                           {n}
                         </span>
