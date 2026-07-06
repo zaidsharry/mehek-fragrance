@@ -87,6 +87,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Mehek Fragrances — Dark Luxury Perfumery" },
+      { name: "description", content: "Enter Mehek Fragrances — an atelier of dark, cinematic extraits. Explore ten limited compositions in oud, amber, rose and leather." },
+      { property: "og:description", content: "Enter Mehek Fragrances — an atelier of dark, cinematic extraits. Explore ten limited compositions in oud, amber, rose and leather." },
+      { name: "twitter:description", content: "Enter Mehek Fragrances — an atelier of dark, cinematic extraits. Explore ten limited compositions in oud, amber, rose and leather." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/763efe36-b7d5-4ca0-b197-5309ff794e49" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/763efe36-b7d5-4ca0-b197-5309ff794e49" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
