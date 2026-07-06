@@ -1,10 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import heroBottle from "@/assets/hero-bottle.jpg";
+import heroVideoAsset from "@/assets/hero-video.mp4.asset.json";
 import { ProductCard } from "@/components/ProductCard";
 import { products } from "@/lib/products";
+import { rawMaterials } from "@/lib/note-images";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -21,14 +22,8 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-const ingredients = [
-  { name: "Bergamot", tag: "The first breath", icon: "🍊" },
-  { name: "Bulgarian Rose", tag: "The velvet heart", icon: "🌹" },
-  { name: "Cambodian Oud", tag: "The dark spine", icon: "🪵" },
-  { name: "Mysore Sandalwood", tag: "The soft residue", icon: "🕯️" },
-  { name: "Madagascan Vanilla", tag: "The warmth", icon: "🤎" },
-  { name: "Ambergris", tag: "The signature trail", icon: "🌊" },
-];
+
+
 
 const reviews = [
   { name: "Ayesha Kapoor", city: "Mumbai", rating: 5, verified: true, text: "Noir Oud is other-worldly. Compliments follow me for hours. This is what perfume is supposed to feel like." },
@@ -40,98 +35,106 @@ const reviews = [
 ];
 
 function Home() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
-
   const featured = products.slice(0, 6);
 
   return (
     <div>
-      {/* HERO */}
-      <section ref={ref} className="relative flex min-h-[100svh] items-center overflow-hidden">
-        {/* Bottle */}
-        <motion.div
-          style={{ y, scale, opacity }}
-          className="absolute inset-y-0 right-0 z-10 flex w-full items-center justify-center md:w-[58%]"
-        >
-          <motion.img
-            src={heroBottle}
-            alt="Mehek Fragrances signature bottle"
-            width={1280}
-            height={1600}
-            className="animate-bottle-reveal max-h-[92vh] w-auto object-contain drop-shadow-[0_50px_80px_rgba(0,0,0,0.8)]"
-            style={{ willChange: "transform" }}
-          />
-          {/* Spotlight */}
-          <div
-            aria-hidden
-            className="animate-spotlight pointer-events-none absolute inset-0 -z-10"
+      {/* HERO — full-bleed video */}
+      <section className="relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden bg-ink">
+        {/* Background video */}
+        <video
+          src={heroVideoAsset.url}
+          poster={heroBottle}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ willChange: "transform" }}
+        />
+
+        {/* Cinematic vignette — dark all around, subtle warm center */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse at 50% 50%, oklch(0 0 0 / 0) 30%, oklch(0 0 0 / 0.55) 65%, oklch(0 0 0 / 0.9) 100%)",
+          }}
+        />
+        {/* Top + bottom darkening bands so text is always legible */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[45vh] bg-gradient-to-b from-ink via-ink/70 to-transparent"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[45vh] bg-gradient-to-t from-ink via-ink/70 to-transparent"
+        />
+
+        {/* Floating gold particles */}
+        {Array.from({ length: 22 }).map((_, i) => (
+          <span
+            key={i}
+            className="animate-drift pointer-events-none absolute z-10 h-1 w-1 rounded-full bg-gold"
             style={{
-              background:
-                "radial-gradient(ellipse at 50% 40%, oklch(0.75 0.16 55 / 0.35), transparent 55%)",
+              left: `${10 + Math.random() * 80}%`,
+              top: `${15 + Math.random() * 70}%`,
+              animationDelay: `${i * 0.4}s`,
+              boxShadow: "0 0 6px oklch(0.82 0.13 82 / 0.9)",
+              opacity: 0.55,
             }}
           />
-          {/* Floating gold particles */}
-          {Array.from({ length: 22 }).map((_, i) => (
-            <span
-              key={i}
-              className="animate-drift pointer-events-none absolute h-1 w-1 rounded-full bg-gold"
-              style={{
-                left: `${20 + Math.random() * 60}%`,
-                top: `${20 + Math.random() * 60}%`,
-                animationDelay: `${i * 0.4}s`,
-                boxShadow: "0 0 6px oklch(0.82 0.13 82 / 0.9)",
-                opacity: 0.6,
-              }}
-            />
-          ))}
+        ))}
+
+        {/* Top-centered eyebrow + headline */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute inset-x-0 top-0 z-20 flex flex-col items-center px-6 pt-28 text-center md:pt-32"
+        >
+          <div className="label-eyebrow">Maison Mehek · Est. 2026</div>
+          <h1 className="mt-6 font-display text-5xl leading-[0.95] tracking-tight md:text-7xl lg:text-[6rem]">
+            A private <span className="italic text-gold-gradient">library</span> of scent.
+          </h1>
         </motion.div>
 
-        {/* Copy */}
-        <div className="relative z-20 mx-auto grid w-full max-w-[1440px] px-6 pt-40 md:px-10 md:pt-0">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-            className="max-w-xl"
-          >
-            <div className="label-eyebrow">Maison Mehek · Est. 2026</div>
-            <h1 className="mt-8 font-display text-5xl leading-[0.95] tracking-tight md:text-7xl lg:text-[5.5rem]">
-              A private<br />
-              <span className="italic text-gold-gradient">library</span> of<br />
-              scent.
-            </h1>
-            <p className="mt-8 max-w-md font-display text-lg leading-relaxed text-foreground/80">
-              Ten cinematic extraits composed in oud, amber, rose and leather —
-              hand-poured, in editions rarely seen twice.
-            </p>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <Link to="/collection" className="btn-gold btn-gold-hover">
-                Shop Collection <ChevronRight className="h-4 w-4" />
-              </Link>
-              <Link to="/product/$id" params={{ id: "noir-oud" }} className="btn-ghost-gold">
-                Discover Noir Oud
-              </Link>
-            </div>
-          </motion.div>
-        </div>
+        {/* Bottom-centered tagline + CTAs */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute inset-x-0 bottom-0 z-20 flex flex-col items-center px-6 pb-24 text-center md:pb-28"
+        >
+          <p className="mx-auto max-w-xl font-display text-lg leading-relaxed text-foreground/85 md:text-xl">
+            Ten cinematic extraits composed in oud, amber, rose and leather —
+            hand-poured, in editions rarely seen twice.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <Link to="/collection" className="btn-gold btn-gold-hover">
+              Shop Collection <ChevronRight className="h-4 w-4" />
+            </Link>
+            <Link to="/product/$id" params={{ id: "noir-oud" }} className="btn-ghost-gold">
+              Discover Noir Oud
+            </Link>
+          </div>
+        </motion.div>
 
-        {/* Bottom fade */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-40 bg-gradient-to-b from-transparent to-ink" />
         {/* Scroll cue */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.5, duration: 1 }}
-          className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 text-center"
+          className="absolute bottom-4 left-1/2 z-20 -translate-x-1/2 text-center"
         >
-          <div className="mx-auto h-14 w-px bg-gradient-to-b from-transparent to-gold" />
-          <div className="mt-3 text-[10px] uppercase tracking-[0.4em] text-gold">Scroll</div>
+          <div className="mx-auto h-10 w-px bg-gradient-to-b from-transparent to-gold" />
+          <div className="mt-2 text-[10px] uppercase tracking-[0.4em] text-gold">Scroll</div>
         </motion.div>
       </section>
+
+
 
       {/* MANIFESTO */}
       <section className="relative py-32 md:py-48">
@@ -178,35 +181,45 @@ function Home() {
             <h2 className="mt-4 font-display text-4xl md:text-5xl">A pyramid of origins</h2>
           </div>
           <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-6">
-            {ingredients.map((ing, i) => (
+            {rawMaterials.map((ing, i) => (
               <motion.div
                 key={ing.name}
                 initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
                 whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="glass-luxe group relative aspect-square overflow-hidden p-6"
+                className="glass-luxe group relative aspect-square overflow-hidden"
               >
+                <img
+                  src={ing.image}
+                  alt={ing.name}
+                  loading="lazy"
+                  width={512}
+                  height={512}
+                  className="absolute inset-0 h-full w-full object-cover opacity-70 transition-all duration-700 group-hover:scale-110 group-hover:opacity-100"
+                />
+                <div
+                  aria-hidden
+                  className="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-transparent"
+                />
                 <div
                   aria-hidden
                   className="absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100"
                   style={{
                     background:
-                      "radial-gradient(circle at 50% 100%, oklch(0.75 0.16 55 / 0.35), transparent 65%)",
+                      "radial-gradient(circle at 50% 100%, oklch(0.75 0.16 55 / 0.4), transparent 65%)",
                   }}
                 />
-                <div className="flex h-full flex-col justify-between">
-                  <div className="text-4xl">{ing.icon}</div>
-                  <div>
-                    <div className="font-display text-xl leading-tight">{ing.name}</div>
-                    <div className="mt-1 text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
-                      {ing.tag}
-                    </div>
+                <div className="relative flex h-full flex-col justify-end p-6">
+                  <div className="font-display text-xl leading-tight">{ing.name}</div>
+                  <div className="mt-1 text-[10px] uppercase tracking-[0.28em] text-gold-soft">
+                    {ing.tag}
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
+
         </div>
       </section>
 
