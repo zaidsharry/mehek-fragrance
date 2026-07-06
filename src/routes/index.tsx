@@ -23,14 +23,7 @@ export const Route = createFileRoute("/")({
 });
 
 
-const ingredients = [
-  { name: "Bergamot", tag: "The first breath", icon: "🍊" },
-  { name: "Bulgarian Rose", tag: "The velvet heart", icon: "🌹" },
-  { name: "Cambodian Oud", tag: "The dark spine", icon: "🪵" },
-  { name: "Mysore Sandalwood", tag: "The soft residue", icon: "🕯️" },
-  { name: "Madagascan Vanilla", tag: "The warmth", icon: "🤎" },
-  { name: "Ambergris", tag: "The signature trail", icon: "🌊" },
-];
+
 
 const reviews = [
   { name: "Ayesha Kapoor", city: "Mumbai", rating: 5, verified: true, text: "Noir Oud is other-worldly. Compliments follow me for hours. This is what perfume is supposed to feel like." },
