@@ -181,35 +181,45 @@ function Home() {
             <h2 className="mt-4 font-display text-4xl md:text-5xl">A pyramid of origins</h2>
           </div>
           <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-6">
-            {ingredients.map((ing, i) => (
+            {rawMaterials.map((ing, i) => (
               <motion.div
                 key={ing.name}
                 initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
                 whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="glass-luxe group relative aspect-square overflow-hidden p-6"
+                className="glass-luxe group relative aspect-square overflow-hidden"
               >
+                <img
+                  src={ing.image}
+                  alt={ing.name}
+                  loading="lazy"
+                  width={512}
+                  height={512}
+                  className="absolute inset-0 h-full w-full object-cover opacity-70 transition-all duration-700 group-hover:scale-110 group-hover:opacity-100"
+                />
+                <div
+                  aria-hidden
+                  className="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-transparent"
+                />
                 <div
                   aria-hidden
                   className="absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100"
                   style={{
                     background:
-                      "radial-gradient(circle at 50% 100%, oklch(0.75 0.16 55 / 0.35), transparent 65%)",
+                      "radial-gradient(circle at 50% 100%, oklch(0.75 0.16 55 / 0.4), transparent 65%)",
                   }}
                 />
-                <div className="flex h-full flex-col justify-between">
-                  <div className="text-4xl">{ing.icon}</div>
-                  <div>
-                    <div className="font-display text-xl leading-tight">{ing.name}</div>
-                    <div className="mt-1 text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
-                      {ing.tag}
-                    </div>
+                <div className="relative flex h-full flex-col justify-end p-6">
+                  <div className="font-display text-xl leading-tight">{ing.name}</div>
+                  <div className="mt-1 text-[10px] uppercase tracking-[0.28em] text-gold-soft">
+                    {ing.tag}
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
+
         </div>
       </section>
 
