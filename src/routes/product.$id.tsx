@@ -17,9 +17,9 @@ export const Route = createFileRoute("/product/$id")({
     return {
       meta: p
         ? [
-            { title: `${p.name} — Mehek Fragrances` },
+            { title: `${p.name} — Swaraj Enterprises` },
             { name: "description", content: p.description },
-            { property: "og:title", content: `${p.name} — Mehek Fragrances` },
+            { property: "og:title", content: `${p.name} — Swaraj Enterprises` },
             { property: "og:description", content: p.description },
             { property: "og:image", content: p.image },
             { name: "twitter:card", content: "summary_large_image" },
@@ -32,9 +32,9 @@ export const Route = createFileRoute("/product/$id")({
   notFoundComponent: () => (
     <div className="flex min-h-screen items-center justify-center px-6 text-center">
       <div>
-        <div className="label-eyebrow">Not in the library</div>
-        <h1 className="mt-4 font-display text-4xl">This extrait has drifted away.</h1>
-        <Link to="/collection" className="btn-ghost-gold mt-8 inline-flex">Back to collection</Link>
+        <div className="label-eyebrow">Not in the range</div>
+        <h1 className="mt-4 font-display text-4xl">This product isn't available.</h1>
+        <Link to="/collection" className="btn-ghost-gold mt-8 inline-flex">Back to products</Link>
       </div>
     </div>
   ),
@@ -52,16 +52,15 @@ function ProductPage() {
     <article className="pt-32">
       <div className="mx-auto max-w-[1440px] px-6 md:px-10">
         <Link to="/collection" className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.32em] text-muted-foreground hover:text-gold">
-          <ChevronLeft className="h-3.5 w-3.5" /> Collection
+          <ChevronLeft className="h-3.5 w-3.5" /> Products
         </Link>
 
         <div className="mt-8 grid gap-12 lg:grid-cols-2 lg:gap-16">
-          {/* Image */}
           <motion.div
             initial={{ opacity: 0, scale: 1.04 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-            className="relative aspect-[3/4] overflow-hidden bg-ink"
+            className="relative aspect-[3/4] overflow-hidden bg-muted"
           >
             <div
               aria-hidden
@@ -79,7 +78,6 @@ function ProductPage() {
             <div className="pointer-events-none absolute inset-4 border border-gold/20" />
           </motion.div>
 
-          {/* Detail */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -95,14 +93,14 @@ function ProductPage() {
 
             <p className="mt-8 max-w-lg font-display text-lg leading-relaxed text-foreground/85">{p.description}</p>
 
-            {/* Pyramid */}
+            {/* Formula */}
             <div className="mt-10">
-              <div className="label-eyebrow">Fragrance Pyramid</div>
+              <div className="label-eyebrow">Formula</div>
               <div className="mt-4 space-y-3">
                 {[
-                  { label: "Top", items: p.top },
-                  { label: "Heart", items: p.heart },
-                  { label: "Base", items: p.base },
+                  { label: "Key", items: p.top },
+                  { label: "Uses", items: p.heart },
+                  { label: "Benefits", items: p.base },
                 ].map((tier) => (
                   <div key={tier.label} className="glass-luxe flex flex-wrap items-center gap-3 p-4">
                     <div className="w-14 text-[10px] uppercase tracking-[0.3em] text-gold">{tier.label}</div>
@@ -118,20 +116,18 @@ function ProductPage() {
               </div>
             </div>
 
-            {/* Meters */}
             <div className="mt-8 grid grid-cols-2 gap-4">
-              <Meter label="Longevity" value={p.longevity} />
-              <Meter label="Projection" value={p.projection} />
+              <Meter label="Efficacy" value={p.longevity} />
+              <Meter label="Freshness" value={p.projection} />
             </div>
 
             <div className="mt-6 grid grid-cols-2 gap-4 text-sm">
-              <Meta label="Gender" value={p.gender} />
-              <Meta label="Season" value={p.season} />
-              <Meta label="Occasion" value={p.occasion} />
-              <Meta label="Wear" value={p.timeOfDay} />
+              <Meta label="Use Area" value={p.gender} />
+              <Meta label="Best For" value={p.season} />
+              <Meta label="Surfaces" value={p.occasion} />
+              <Meta label="Frequency" value={p.timeOfDay} />
             </div>
 
-            {/* Actions */}
             <div className="mt-10 flex items-center gap-4">
               <div className="flex items-center border border-gold/25">
                 <button onClick={() => setQty((q) => Math.max(1, q - 1))} className="px-4 py-3 text-gold hover:bg-gold/10">–</button>
@@ -144,7 +140,7 @@ function ProductPage() {
                 }}
                 className="btn-gold btn-gold-hover flex-1"
               >
-                <ShoppingBag className="h-4 w-4" /> Add to Coffret
+                <ShoppingBag className="h-4 w-4" /> Add to Cart
               </button>
             </div>
             <Link
@@ -160,10 +156,9 @@ function ProductPage() {
           </motion.div>
         </div>
 
-        {/* Similar */}
         <section className="mt-32">
           <div className="mb-10 flex items-end justify-between">
-            <h2 className="font-display text-3xl md:text-4xl">Customers also bought</h2>
+            <h2 className="font-display text-3xl md:text-4xl">You might also like</h2>
             <Link to="/collection" className="text-[11px] uppercase tracking-[0.3em] text-gold hover:text-gold-soft">See all</Link>
           </div>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -184,7 +179,7 @@ function Meter({ label, value }: { label: string; value: number }) {
         <div className="text-[10px] uppercase tracking-[0.3em] text-gold">{label}</div>
         <div className="font-display text-base text-foreground/80">{value}/10</div>
       </div>
-      <div className="mt-3 h-1 overflow-hidden bg-ink">
+      <div className="mt-3 h-1 overflow-hidden bg-muted">
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${value * 10}%` }}

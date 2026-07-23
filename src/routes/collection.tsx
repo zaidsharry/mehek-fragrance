@@ -8,49 +8,49 @@ export const Route = createFileRoute("/collection")({
   component: Collection,
   head: () => ({
     meta: [
-      { title: "The Collection — Mehek Fragrances" },
+      { title: "All Products — Swaraj Enterprises" },
       {
         name: "description",
         content:
-          "Ten limited extraits from Mehek Fragrances — oud, amber, rose, leather. Filter by gender, mood and note.",
+          "Browse the complete Swaraj Enterprises range — floor cleaners, disinfectants, glass sprays, detergents, dishwash and car care.",
       },
-      { property: "og:title", content: "The Collection — Mehek Fragrances" },
+      { property: "og:title", content: "All Products — Swaraj Enterprises" },
       {
         property: "og:description",
-        content: "Ten cinematic extraits. Composed in shadow, gilded in gold.",
+        content: "Ten premium cleaning products for house and vehicle. Formulated in India.",
       },
     ],
   }),
 });
 
-const genders = ["All", "Unisex", "Women", "Men"] as const;
+const categories = ["All", "Home", "Vehicle", "Personal"] as const;
 const priceBands = [
   { id: "any", label: "Any price", min: 0, max: Infinity },
-  { id: "u10", label: "Under ₹10,500", min: 0, max: 10500 },
-  { id: "10-13", label: "₹10,500 – ₹13,000", min: 10500, max: 13000 },
-  { id: "13+", label: "₹13,000+", min: 13000, max: Infinity },
+  { id: "u250", label: "Under ₹250", min: 0, max: 250 },
+  { id: "250-500", label: "₹250 – ₹500", min: 250, max: 500 },
+  { id: "500+", label: "₹500+", min: 500, max: Infinity },
 ] as const;
-const notes = ["All", "Oud", "Rose", "Amber", "Leather", "Vanilla", "Sandalwood"] as const;
+const ingredients = ["All", "Lemon", "Mint", "Eucalyptus", "Pine", "Aloe", "Lavender", "Jasmine"] as const;
 
 function Collection() {
-  const [gender, setGender] = useState<(typeof genders)[number]>("All");
+  const [category, setCategory] = useState<(typeof categories)[number]>("All");
   const [band, setBand] = useState<(typeof priceBands)[number]["id"]>("any");
-  const [note, setNote] = useState<(typeof notes)[number]>("All");
+  const [ingredient, setIngredient] = useState<(typeof ingredients)[number]>("All");
 
   const filtered = useMemo(() => {
     const b = priceBands.find((x) => x.id === band)!;
     return products.filter((p) => {
-      if (gender !== "All" && p.gender !== gender) return false;
+      if (category !== "All" && p.gender !== category) return false;
       if (p.price < b.min || p.price > b.max) return false;
-      if (note !== "All") {
+      if (ingredient !== "All") {
         const all = [...p.top, ...p.heart, ...p.base, ...p.featured.map((f) => f.name)]
           .join(" ")
           .toLowerCase();
-        if (!all.includes(note.toLowerCase())) return false;
+        if (!all.includes(ingredient.toLowerCase())) return false;
       }
       return true;
     });
-  }, [gender, band, note]);
+  }, [category, band, ingredient]);
 
   return (
     <div>
@@ -61,29 +61,29 @@ function Collection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="label-eyebrow">The Complete Collection</div>
+            <div className="label-eyebrow">The Complete Range</div>
             <h1 className="mt-6 font-display text-5xl leading-[0.95] md:text-8xl">
-              Ten extraits,<br />
-              <span className="italic text-gold-gradient">one obsession</span>.
+              Ten products,<br />
+              <span className="italic text-gold-gradient">one standard</span>.
             </h1>
             <p className="mt-8 max-w-xl font-display text-lg text-foreground/80">
-              Every bottle is hand-poured in editions of two-hundred. When they end, they end.
+              Premium cleaning formulas for house and vehicle — concentrated, plant-forward, and made in India.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Filters */}
-      <section className="sticky top-[76px] z-30 border-y border-gold/10 bg-ink/70 backdrop-blur-xl">
+      <section className="sticky top-[76px] z-30 border-y border-gold/10 bg-background/70 backdrop-blur-xl">
         <div className="mx-auto flex max-w-[1440px] flex-wrap items-center gap-6 px-6 py-4 md:px-10">
-          <FilterGroup label="Gender" options={[...genders]} value={gender} onChange={(v) => setGender(v as typeof gender)} />
+          <FilterGroup label="Category" options={[...categories]} value={category} onChange={(v) => setCategory(v as typeof category)} />
           <FilterGroup
             label="Price"
             options={priceBands.map((p) => p.label)}
             value={priceBands.find((p) => p.id === band)!.label}
             onChange={(v) => setBand(priceBands.find((p) => p.label === v)!.id)}
           />
-          <FilterGroup label="Note" options={[...notes]} value={note} onChange={(v) => setNote(v as typeof note)} />
+          <FilterGroup label="Ingredient" options={[...ingredients]} value={ingredient} onChange={(v) => setIngredient(v as typeof ingredient)} />
           <div className="ml-auto text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
             {filtered.length} of {products.length}
           </div>
@@ -94,7 +94,7 @@ function Collection() {
         <div className="mx-auto max-w-[1440px] px-6 md:px-10">
           {filtered.length === 0 ? (
             <div className="py-32 text-center">
-              <div className="font-display text-3xl">No extraits match that mood.</div>
+              <div className="font-display text-3xl">No products match those filters.</div>
               <p className="mt-3 text-sm text-muted-foreground">Try softening a filter.</p>
             </div>
           ) : (

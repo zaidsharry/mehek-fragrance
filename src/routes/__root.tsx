@@ -31,11 +31,11 @@ function NotFoundComponent() {
       <div className="smoke-layer" />
       <div className="relative max-w-md text-center">
         <div className="font-display text-[10rem] leading-none text-gold-gradient">404</div>
-        <div className="label-eyebrow mt-4">A note that does not exist</div>
+        <div className="label-eyebrow mt-4">A product that doesn't exist</div>
         <p className="mt-6 font-display text-2xl text-foreground/80">
-          The fragrance you're searching for has drifted into smoke.
+          The page you're looking for has been wiped clean.
         </p>
-        <Link to="/" className="btn-gold btn-gold-hover mt-10">Return to the Maison</Link>
+        <Link to="/" className="btn-gold btn-gold-hover mt-10">Back to Home</Link>
       </div>
     </div>
   );
@@ -51,9 +51,9 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <div className="label-eyebrow">Something unraveled</div>
+        <div className="label-eyebrow">Something went wrong</div>
         <h1 className="mt-4 font-display text-3xl text-foreground">This page didn't load</h1>
-        <p className="mt-3 text-sm text-muted-foreground">Try again or return to the maison.</p>
+        <p className="mt-3 text-sm text-muted-foreground">Try again or return home.</p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <button
             onClick={() => { router.invalidate(); reset(); }}
@@ -73,26 +73,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Mehek Fragrances — Dark Luxury Perfumery" },
+      { title: "Swaraj Enterprises — Premium House & Vehicle Cleaning Products" },
       {
         name: "description",
         content:
-          "An atelier of cinematic, dark-luxury fragrances. Discover Mehek Fragrances — hand-composed extraits of oud, rose, amber and leather.",
+          "Swaraj Enterprises crafts premium house and vehicle cleaning products — floor cleaners, disinfectants, glass sprays, detergents and car care, formulated for a spotless everyday.",
       },
-      { name: "author", content: "Mehek Fragrances" },
-      { property: "og:title", content: "Mehek Fragrances — Dark Luxury Perfumery" },
+      { name: "author", content: "Swaraj Enterprises" },
+      { property: "og:title", content: "Swaraj Enterprises — Premium Cleaning Products" },
       {
         property: "og:description",
-        content: "Cinematic extraits composed in gold, smoke and shadow.",
+        content: "Premium cleaning products for homes and vehicles — crafted in India, formulated for shine.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Mehek Fragrances — Dark Luxury Perfumery" },
-      { name: "description", content: "Enter Mehek Fragrances — an atelier of dark, cinematic extraits. Explore ten limited compositions in oud, amber, rose and leather." },
-      { property: "og:description", content: "Enter Mehek Fragrances — an atelier of dark, cinematic extraits. Explore ten limited compositions in oud, amber, rose and leather." },
-      { name: "twitter:description", content: "Enter Mehek Fragrances — an atelier of dark, cinematic extraits. Explore ten limited compositions in oud, amber, rose and leather." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/763efe36-b7d5-4ca0-b197-5309ff794e49" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/763efe36-b7d5-4ca0-b197-5309ff794e49" },
+      { name: "twitter:title", content: "Swaraj Enterprises — Premium Cleaning Products" },
+      { name: "twitter:description", content: "Premium cleaning products for homes and vehicles — crafted in India, formulated for shine." },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -107,7 +103,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <head>
         <HeadContent />
       </head>
@@ -128,7 +124,6 @@ function RootComponent() {
       <CustomCursor />
       <Nav />
       <main className="min-h-screen">
-        {/* Required: nested routes render here. */}
         <Outlet />
       </main>
       <Footer />

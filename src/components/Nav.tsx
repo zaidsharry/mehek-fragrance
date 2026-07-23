@@ -6,8 +6,8 @@ import { Logo } from "./Logo";
 import { useCart } from "@/lib/cart-store";
 
 const links = [
-  { to: "/", label: "Maison" },
-  { to: "/collection", label: "Collection" },
+  { to: "/", label: "Home" },
+  { to: "/collection", label: "Products" },
   { to: "/contact", label: "Contact" },
 ];
 
@@ -76,7 +76,7 @@ export function Nav() {
             >
               <ShoppingBag className="h-[18px] w-[18px]" />
               {count > 0 && (
-                <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-gold px-1 text-[10px] font-medium text-ink">
+                <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-gold px-1 text-[10px] font-medium text-white">
                   {count}
                 </span>
               )}
@@ -99,7 +99,7 @@ export function Nav() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] bg-ink/95 backdrop-blur-xl md:hidden"
+            className="fixed inset-0 z-[60] bg-background/95 backdrop-blur-xl md:hidden"
           >
             <div className="flex items-center justify-between p-6">
               <Logo />
@@ -136,7 +136,7 @@ export function Nav() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[70] flex items-start justify-center bg-ink/90 pt-32 backdrop-blur-2xl"
+            className="fixed inset-0 z-[70] flex items-start justify-center bg-background/90 pt-32 backdrop-blur-2xl"
             onClick={() => setSearchOpen(false)}
           >
             <motion.div
@@ -147,14 +147,14 @@ export function Nav() {
               onClick={(e) => e.stopPropagation()}
               className="w-full max-w-2xl px-6"
             >
-              <label className="label-eyebrow block">Search the maison</label>
+              <label className="label-eyebrow block">Search Swaraj</label>
               <input
                 autoFocus
-                placeholder="A note, a mood, a memory…"
+                placeholder="A product, a surface, a need…"
                 className="mt-4 w-full border-0 border-b border-gold/30 bg-transparent pb-4 font-display text-3xl text-foreground placeholder:text-foreground/30 focus:border-gold focus:outline-none md:text-5xl"
               />
               <p className="mt-6 text-xs uppercase tracking-[0.3em] text-muted-foreground">
-                Try "oud", "rose", "night"
+                Try "floor", "glass", "car"
               </p>
             </motion.div>
           </motion.div>
