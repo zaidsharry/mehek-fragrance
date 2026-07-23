@@ -5,7 +5,7 @@ import { Logo } from "@/components/Logo";
 
 export const Route = createFileRoute("/login")({
   component: Login,
-  head: () => ({ meta: [{ title: "Account — Mehek Fragrances" }, { name: "description", content: "Sign in to your Mehek Fragrances account." }] }),
+  head: () => ({ meta: [{ title: "Account — Swaraj Enterprises" }, { name: "description", content: "Sign in to your Swaraj Enterprises account." }] }),
 });
 
 function Login() {
@@ -22,7 +22,7 @@ function Login() {
             left: `${20 + Math.random() * 60}%`,
             top: `${20 + Math.random() * 60}%`,
             animationDelay: `${i * 0.5}s`,
-            boxShadow: "0 0 6px oklch(0.82 0.13 82 / 0.8)",
+            boxShadow: "0 0 6px oklch(0.48 0.16 255 / 0.8)",
             opacity: 0.5,
           }}
         />
@@ -36,9 +36,9 @@ function Login() {
       >
         <div className="flex flex-col items-center">
           <Logo showText={false} />
-          <h1 className="mt-6 font-display text-3xl">{mode === "in" ? "Welcome back" : "Join the Maison"}</h1>
+          <h1 className="mt-6 font-display text-3xl">{mode === "in" ? "Welcome back" : "Create your account"}</h1>
           <p className="mt-2 text-center text-sm text-muted-foreground">
-            {mode === "in" ? "Sign in to your private library." : "Create an account to keep your favourites."}
+            {mode === "in" ? "Sign in to view your orders." : "Save favourites and track orders."}
           </p>
         </div>
 
@@ -59,7 +59,7 @@ function Login() {
         <button className="btn-ghost-gold mt-4 w-full">Continue with Google</button>
 
         <p className="mt-6 text-center text-xs text-muted-foreground">
-          {mode === "in" ? "New to Mehek?" : "Already a member?"}{" "}
+          {mode === "in" ? "New to Swaraj?" : "Already a member?"}{" "}
           <button
             onClick={() => setMode(mode === "in" ? "up" : "in")}
             className="text-gold hover:text-gold-soft"
@@ -70,7 +70,7 @@ function Login() {
 
         <div className="mt-6 text-center">
           <Link to="/" className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground hover:text-gold">
-            Return to the Maison
+            Back to home
           </Link>
         </div>
       </motion.div>

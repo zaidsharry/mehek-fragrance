@@ -7,7 +7,7 @@ import { formatPrice } from "@/lib/products";
 
 export const Route = createFileRoute("/checkout")({
   component: Checkout,
-  head: () => ({ meta: [{ title: "Checkout — Mehek Fragrances" }, { name: "description", content: "Complete your Mehek Fragrances order." }] }),
+  head: () => ({ meta: [{ title: "Checkout — Swaraj Enterprises" }, { name: "description", content: "Complete your Swaraj Enterprises order." }] }),
 });
 
 function Checkout() {
@@ -21,9 +21,9 @@ function Checkout() {
   if (items.length === 0 && step === "form") {
     return (
       <div className="mx-auto max-w-lg px-6 pt-40 text-center">
-        <h1 className="font-display text-4xl">Your coffret is empty</h1>
-        <p className="mt-4 text-muted-foreground">Add a fragrance before checking out.</p>
-        <Link to="/collection" className="btn-ghost-gold mt-8 inline-flex">Discover the collection</Link>
+        <h1 className="font-display text-4xl">Your cart is empty</h1>
+        <p className="mt-4 text-muted-foreground">Add a product before checking out.</p>
+        <Link to="/collection" className="btn-ghost-gold mt-8 inline-flex">Browse products</Link>
       </div>
     );
   }
@@ -44,7 +44,7 @@ function Checkout() {
               >
                 <div>
                   <div className="label-eyebrow">Checkout</div>
-                  <h1 className="mt-4 font-display text-4xl md:text-5xl">Deliver this scent</h1>
+                  <h1 className="mt-4 font-display text-4xl md:text-5xl">Complete your order</h1>
                 </div>
 
                 <Section title="Contact">
@@ -84,11 +84,11 @@ function Checkout() {
 
               <aside className="lg:sticky lg:top-32 lg:self-start">
                 <div className="glass-luxe p-8">
-                  <div className="label-eyebrow">Your Coffret</div>
+                  <div className="label-eyebrow">Your Cart</div>
                   <ul className="mt-6 space-y-5">
                     {items.map((it) => (
                       <li key={it.id} className="flex gap-4">
-                        <div className="h-20 w-16 flex-shrink-0 overflow-hidden bg-ink">
+                        <div className="h-20 w-16 flex-shrink-0 overflow-hidden bg-muted">
                           <img src={it.image} alt={it.name} className="h-full w-full object-cover" />
                         </div>
                         <div className="flex flex-1 items-start justify-between">
@@ -105,7 +105,7 @@ function Checkout() {
                   </ul>
                   <div className="mt-8 space-y-3 border-t border-gold/10 pt-6 text-sm">
                     <Row label="Subtotal" value={formatPrice(total)} />
-                    <Row label="Shipping" value="Complimentary" />
+                    <Row label="Shipping" value="Free" />
                   </div>
                   <div className="mt-6 flex items-baseline justify-between border-t border-gold/10 pt-6">
                     <div className="label-eyebrow">Total</div>
@@ -129,19 +129,19 @@ function Checkout() {
                   animate={{ opacity: [0, 1, 0], y: -300 }}
                   transition={{ duration: 2.4, delay: i * 0.08, ease: "easeOut" }}
                   className="absolute left-1/2 h-1 w-1 rounded-full bg-gold"
-                  style={{ boxShadow: "0 0 8px oklch(0.82 0.13 82)" }}
+                  style={{ boxShadow: "0 0 8px oklch(0.48 0.16 255)" }}
                 />
               ))}
               <CheckCircle2 className="mx-auto h-14 w-14 text-gold" />
-              <h1 className="mt-6 font-display text-5xl">Merci.</h1>
+              <h1 className="mt-6 font-display text-5xl">Thank you.</h1>
               <p className="mt-4 font-display text-xl text-foreground/80">
-                Your coffret is being hand-finished in the atelier.
+                Your order is being packed at our Mumbai warehouse.
               </p>
               <p className="mt-2 text-sm text-muted-foreground">
                 A confirmation with tracking will arrive shortly.
               </p>
               <button onClick={() => router.navigate({ to: "/" })} className="btn-gold btn-gold-hover mt-10">
-                Return to the Maison
+                Back to Home
               </button>
             </motion.div>
           )}
