@@ -149,16 +149,19 @@ function Home() {
                 transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
               />
             </div>
-            <motion.img
-              src={maisonBottle}
-              alt="Swaraj Enterprises signature cleaning bottle"
-              loading="lazy"
-              width={1024}
-              height={1280}
-              className="relative mx-auto w-full max-w-[440px] rounded-sm object-cover shadow-[0_40px_120px_-30px_oklch(0.48_0.16_255_/_0.35)]"
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-            />
+            <div className="group relative overflow-hidden rounded-sm image-hover-lift">
+              <motion.img
+                src={maisonBottle}
+                alt="Swaraj Enterprises signature cleaning bottle"
+                loading="lazy"
+                width={1024}
+                height={1280}
+                className="relative mx-auto w-full max-w-[440px] rounded-sm object-cover shadow-[0_40px_120px_-30px_oklch(0.48_0.16_255_/_0.35)] transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <span aria-hidden className="image-shine" />
+            </div>
           </motion.div>
 
           <motion.div
