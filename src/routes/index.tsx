@@ -180,7 +180,7 @@ function Home() {
               with intention, with restraint, and with an obsession for the finish.
             </p>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-              Every bottle is developed in our Mumbai lab and tested across Indian homes and
+              Every bottle is developed in our Dakshina Kannada lab and tested across Indian homes and
               vehicles. No harsh cover-ups, no watered-down formulas — only concentrated,
               plant-forward chemistry that leaves surfaces genuinely clean.
             </p>
