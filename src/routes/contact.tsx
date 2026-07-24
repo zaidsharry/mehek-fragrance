@@ -8,7 +8,7 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact — Swaraj Enterprises" },
-      { name: "description", content: "Talk to Swaraj Enterprises about products, bulk orders and B2B pricing. WhatsApp +91 82913 88799." },
+      { name: "description", content: "Talk to Swaraj Enterprises about products, bulk orders and B2B pricing. WhatsApp +91 98447 34939." },
       { property: "og:title", content: "Contact — Swaraj Enterprises" },
       { property: "og:description", content: "We're on WhatsApp for orders, bulk enquiries and B2B pricing." },
       { property: "og:image", content: heroBottle },
