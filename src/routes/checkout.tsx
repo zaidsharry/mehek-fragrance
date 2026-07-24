@@ -135,7 +135,7 @@ function Checkout() {
               <CheckCircle2 className="mx-auto h-14 w-14 text-gold" />
               <h1 className="mt-6 font-display text-5xl">Thank you.</h1>
               <p className="mt-4 font-display text-xl text-foreground/80">
-                Your order is being packed at our Mumbai warehouse.
+                Your order is being packed at our Dakshina Kannada warehouse.
               </p>
               <p className="mt-2 text-sm text-muted-foreground">
                 A confirmation with tracking will arrive shortly.
