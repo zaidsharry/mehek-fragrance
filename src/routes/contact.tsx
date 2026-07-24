@@ -38,13 +38,13 @@ function Contact() {
             <ContactRow
               icon={<MessageCircle className="h-5 w-5" />}
               label="WhatsApp"
-              value="+91 82913 88799"
-              href="https://wa.me/918291388799"
+              value="+91 98447 34939"
+              href="https://wa.me/919844734939"
               primary
             />
-            <ContactRow icon={<Phone className="h-5 w-5" />} label="Telephone" value="+91 82913 88799" href="tel:+918291388799" />
-            <ContactRow icon={<Mail className="h-5 w-5" />} label="Email" value="hello@swarajenterprises.in" href="mailto:hello@swarajenterprises.in" />
-            <ContactRow icon={<MapPin className="h-5 w-5" />} label="Warehouse" value="Mumbai, India" />
+            <ContactRow icon={<Phone className="h-5 w-5" />} label="Telephone" value="+91 98447 34939" href="tel:+919844734939" />
+            <ContactRow icon={<Mail className="h-5 w-5" />} label="Email" value="swarajenterprises.co@gmail.com" href="mailto:swarajenterprises.co@gmail.com" />
+            <ContactRow icon={<MapPin className="h-5 w-5" />} label="Address" value="Aberottu, Narikombu Post & Village, Bantwala Tq, Dakshina Kannada — 574231" />
           </div>
         </motion.div>
 
@@ -52,14 +52,15 @@ function Contact() {
           initial={{ opacity: 0, scale: 1.04 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-          className="relative aspect-[4/5] overflow-hidden bg-muted"
+          className="group relative aspect-[4/5] overflow-hidden bg-muted image-hover-lift"
         >
-          <img src={heroBottle} alt="Swaraj Enterprises warehouse" className="h-full w-full object-cover" />
+          <img src={heroBottle} alt="Swaraj Enterprises warehouse" className="h-full w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105" />
+          <span aria-hidden className="image-shine" />
           <div className="pointer-events-none absolute inset-4 border border-gold/30" />
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
           <div className="absolute inset-x-0 bottom-0 p-8">
             <div className="label-eyebrow">Est. 2018</div>
-            <div className="mt-2 font-display text-3xl text-foreground">Swaraj Enterprises, Mumbai</div>
+            <div className="mt-2 font-display text-3xl text-foreground">Swaraj Enterprises, Dakshina Kannada</div>
           </div>
         </motion.div>
       </div>
