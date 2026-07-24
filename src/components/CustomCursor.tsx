@@ -47,17 +47,17 @@ export function CustomCursor() {
   return (
     <>
       <div
-        className="pointer-events-none fixed z-[999] mix-blend-screen transition-[width,height] duration-300"
+        className="pointer-events-none fixed z-[999] mix-blend-multiply transition-[width,height] duration-300"
         style={{
           left: trail.x,
           top: trail.y,
-          width: hovering ? 60 : 34,
-          height: hovering ? 60 : 34,
+          width: hovering ? 64 : 38,
+          height: hovering ? 64 : 38,
           transform: "translate(-50%, -50%)",
           background:
-            "radial-gradient(circle, oklch(0.82 0.13 82 / 0.55), transparent 70%)",
+            "radial-gradient(circle, oklch(0.9 0.18 95 / 0.55), transparent 70%)",
           borderRadius: "50%",
-          filter: "blur(6px)",
+          filter: "blur(8px)",
         }}
       />
       <svg
@@ -67,23 +67,33 @@ export function CustomCursor() {
           top: pos.y,
           transform: `translate(-50%, -50%) scale(${hovering ? 1.4 : 1})`,
           transition: "transform 0.35s cubic-bezier(0.22, 1, 0.36, 1)",
+          filter: "drop-shadow(0 4px 6px rgba(0,0,0,0.25))",
         }}
-        width="18"
+        width="30"
         height="24"
-        viewBox="0 0 18 24"
+        viewBox="0 0 30 24"
       >
         <defs>
-          <linearGradient id="dropGold" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="oklch(0.92 0.09 85)" />
-            <stop offset="100%" stopColor="oklch(0.65 0.13 60)" />
+          <linearGradient id="spongeYellow" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#FFE066" />
+            <stop offset="60%" stopColor="#F5C518" />
+            <stop offset="100%" stopColor="#C99A0E" />
+          </linearGradient>
+          <linearGradient id="spongeGreen" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#3FB65A" />
+            <stop offset="100%" stopColor="#1E7A36" />
           </linearGradient>
         </defs>
-        <path
-          d="M9 1 C 3 10, 1 14, 1 17 a8 8 0 0 0 16 0 c 0 -3 -2 -7 -8 -16 z"
-          fill="none"
-          stroke="url(#dropGold)"
-          strokeWidth="1.2"
-        />
+        {/* green scrub side */}
+        <rect x="1" y="2" width="28" height="7" rx="1.5" fill="url(#spongeGreen)" />
+        {/* yellow sponge body */}
+        <rect x="1" y="8" width="28" height="14" rx="2" fill="url(#spongeYellow)" />
+        {/* pores */}
+        {[[6,13],[11,16],[16,12],[21,15],[25,18],[9,19],[19,19],[14,18]].map(([cx,cy],i)=>(
+          <circle key={i} cx={cx} cy={cy} r="0.9" fill="#B8860B" opacity="0.55" />
+        ))}
+        {/* highlight */}
+        <rect x="2" y="9" width="26" height="1.2" rx="0.6" fill="#FFF3B0" opacity="0.7" />
       </svg>
     </>
   );
