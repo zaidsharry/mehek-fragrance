@@ -320,12 +320,12 @@ function Home() {
             Build your <span className="italic text-gold-gradient">cleaning kit</span>.
           </h2>
           <p className="mx-auto mt-6 max-w-lg font-display text-lg text-foreground/80">
-            Every order is dispatched from our Mumbai warehouse with free shipping over ₹499.
+            Every order is dispatched from Dakshina Kannada with free shipping over ₹499.
             Bulk and B2B enquiries welcomed on WhatsApp.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Link to="/collection" className="btn-gold btn-gold-hover">Shop the Range</Link>
-            <Link to="/contact" className="btn-ghost-gold">Talk to us</Link>
+            <a href="https://wa.me/919844734939" target="_blank" rel="noopener noreferrer" className="btn-ghost-gold">Talk to us</a>
           </div>
         </motion.div>
       </section>
