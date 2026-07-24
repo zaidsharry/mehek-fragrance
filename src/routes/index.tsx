@@ -262,7 +262,7 @@ function Home() {
       <section className="border-t border-gold/10 py-32">
         <div className="mx-auto max-w-[1440px] px-6 md:px-10">
           <div className="mb-14 text-center">
-            <div className="label-eyebrow">Trusted in every home</div>
+            <div className="label-eyebrow">Google Reviews</div>
             <h2 className="mt-4 font-display text-4xl md:text-5xl">What customers say</h2>
           </div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -273,7 +273,7 @@ function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.9, delay: (i % 3) * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="glass-luxe p-8"
+                className="glass-luxe review-card p-8"
               >
                 <div className="flex items-center justify-between">
                   <div className="text-gold">{"★".repeat(r.rating)}</div>
