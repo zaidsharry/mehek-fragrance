@@ -149,16 +149,19 @@ function Home() {
                 transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
               />
             </div>
-            <motion.img
-              src={maisonBottle}
-              alt="Swaraj Enterprises signature cleaning bottle"
-              loading="lazy"
-              width={1024}
-              height={1280}
-              className="relative mx-auto w-full max-w-[440px] rounded-sm object-cover shadow-[0_40px_120px_-30px_oklch(0.48_0.16_255_/_0.35)]"
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-            />
+            <div className="group relative overflow-hidden rounded-sm image-hover-lift">
+              <motion.img
+                src={maisonBottle}
+                alt="Swaraj Enterprises signature cleaning bottle"
+                loading="lazy"
+                width={1024}
+                height={1280}
+                className="relative mx-auto w-full max-w-[440px] rounded-sm object-cover shadow-[0_40px_120px_-30px_oklch(0.48_0.16_255_/_0.35)] transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <span aria-hidden className="image-shine" />
+            </div>
           </motion.div>
 
           <motion.div
@@ -177,7 +180,7 @@ function Home() {
               with intention, with restraint, and with an obsession for the finish.
             </p>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-              Every bottle is developed in our Mumbai lab and tested across Indian homes and
+              Every bottle is developed in our Dakshina Kannada lab and tested across Indian homes and
               vehicles. No harsh cover-ups, no watered-down formulas — only concentrated,
               plant-forward chemistry that leaves surfaces genuinely clean.
             </p>
@@ -259,7 +262,7 @@ function Home() {
       <section className="border-t border-gold/10 py-32">
         <div className="mx-auto max-w-[1440px] px-6 md:px-10">
           <div className="mb-14 text-center">
-            <div className="label-eyebrow">Trusted in every home</div>
+            <div className="label-eyebrow">Google Reviews</div>
             <h2 className="mt-4 font-display text-4xl md:text-5xl">What customers say</h2>
           </div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -270,7 +273,7 @@ function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.9, delay: (i % 3) * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="glass-luxe p-8"
+                className="glass-luxe review-card p-8"
               >
                 <div className="flex items-center justify-between">
                   <div className="text-gold">{"★".repeat(r.rating)}</div>
@@ -317,12 +320,12 @@ function Home() {
             Build your <span className="italic text-gold-gradient">cleaning kit</span>.
           </h2>
           <p className="mx-auto mt-6 max-w-lg font-display text-lg text-foreground/80">
-            Every order is dispatched from our Mumbai warehouse with free shipping over ₹499.
+            Every order is dispatched from Dakshina Kannada with free shipping over ₹499.
             Bulk and B2B enquiries welcomed on WhatsApp.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Link to="/collection" className="btn-gold btn-gold-hover">Shop the Range</Link>
-            <Link to="/contact" className="btn-ghost-gold">Talk to us</Link>
+            <a href="https://wa.me/919844734939" target="_blank" rel="noopener noreferrer" className="btn-ghost-gold">Talk to us</a>
           </div>
         </motion.div>
       </section>

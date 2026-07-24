@@ -63,8 +63,8 @@ export function LoadingScreen() {
             className="relative flex flex-col items-center"
           >
             <Logo showText={false} className="scale-150" />
-            <div className="mt-8 font-display text-3xl tracking-[0.3em] shimmer-text">MEHEK</div>
-            <div className="mt-3 label-eyebrow">Fragrances</div>
+            <div className="mt-8 font-display text-3xl tracking-[0.3em] shimmer-text">SWARAJ ENTERPRISES</div>
+            <div className="mt-3 label-eyebrow">Cleaning Products</div>
           </motion.div>
         </motion.div>
       )}

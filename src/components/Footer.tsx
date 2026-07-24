@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Logo } from "./Logo";
-import { Instagram, Facebook } from "lucide-react";
+import { Instagram } from "lucide-react";
 
 export function Footer() {
   return (
@@ -13,11 +13,14 @@ export function Footer() {
             Premium house and vehicle cleaning products — crafted in India, formulated for a spotless everyday.
           </p>
           <div className="mt-8 flex gap-4">
-            <a href="#" className="rounded-full border border-gold/30 p-3 text-gold transition-colors hover:bg-gold/10">
+            <a
+              href="https://www.instagram.com/swaraj_enterprises.co?igsh=cGxxdXl5ZWQxNDMy"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="btn-icon-gold rounded-full border border-gold/30 p-3 text-gold"
+            >
               <Instagram className="h-4 w-4" />
-            </a>
-            <a href="#" className="rounded-full border border-gold/30 p-3 text-gold transition-colors hover:bg-gold/10">
-              <Facebook className="h-4 w-4" />
             </a>
           </div>
         </div>
@@ -32,9 +35,20 @@ export function Footer() {
         <div>
           <div className="label-eyebrow">Contact</div>
           <ul className="mt-5 space-y-3 text-sm text-foreground/75">
-            <li>+91 82913 88799</li>
-            <li>hello@swarajenterprises.in</li>
-            <li>Mumbai · India</li>
+            <li>
+              <a href="https://wa.me/919844734939" target="_blank" rel="noopener noreferrer" className="hover:text-gold">
+                +91 98447 34939
+              </a>
+            </li>
+            <li>
+              <a href="mailto:swarajenterprises.co@gmail.com" className="hover:text-gold break-all">
+                swarajenterprises.co@gmail.com
+              </a>
+            </li>
+            <li className="leading-relaxed">
+              Aberottu, Narikombu Post &amp; Village,<br />
+              Bantwala Tq, Dakshina Kannada — 574231
+            </li>
           </ul>
         </div>
       </div>
